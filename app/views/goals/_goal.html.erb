@@ -1,14 +1,6 @@
 <div id="<%= dom_id goal %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= goal.title %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= goal.description %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= goal.status %>
-  </p>
+  <li class="py-2 px-4 border-b">
+    <div><%= goal.title %></div>
+    <div><%= goal.description %></div>
+  </li>
 </div>
