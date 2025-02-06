@@ -25,7 +25,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to @goal, notice: "Goal was successfully created." }
+        format.html { redirect_to goals_path, notice: "Goal was successfully created." }
         format.json { render :show, status: :created, location: @goal }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
-        format.html { redirect_to @goal, notice: "Goal was successfully updated." }
+        format.html { redirect_to goals_path, notice: "Goal was successfully updated." }
         format.json { render :show, status: :ok, location: @goal }
       else
         format.html { render :edit, status: :unprocessable_entity }
