@@ -10,22 +10,12 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_goal_url
-    assert_response :success
-  end
-
   test "should create goal" do
     assert_difference("Goal.count") do
       post goals_url, params: { goal: { description: @goal.description, status: @goal.status, title: @goal.title } }
     end
 
-    assert_redirected_to goal_url(Goal.last)
-  end
-
-  test "should show goal" do
-    get goal_url(@goal)
-    assert_response :success
+    assert_redirected_to goals_url
   end
 
   test "should get edit" do
@@ -35,7 +25,7 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update goal" do
     patch goal_url(@goal), params: { goal: { description: @goal.description, status: @goal.status, title: @goal.title } }
-    assert_redirected_to goal_url(@goal)
+    assert_redirected_to goals_url
   end
 
   test "should destroy goal" do

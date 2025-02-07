@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
-  status: 1
+  title: Build the app
+  description: With Ruby on Rails
+  status: 0
 
 two:
-  title: MyString
-  description: MyText
+  title: Learn coding
+  description:
   status: 1
