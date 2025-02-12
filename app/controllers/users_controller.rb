@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :require_no_authentication, only: %i[new create]
+  before_action :require_sign_in, only: %i[ index show edit update destroy ]
 
   # GET /users or /users.json
   def index

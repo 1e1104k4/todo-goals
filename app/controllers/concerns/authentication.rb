@@ -16,6 +16,12 @@ module Authentication
       redirect_to root_path, notice: "You are already signed in"
     end
 
+    def require_sign_in
+      unless user_signed_in?
+        render 'guest/guest'  # Redirects to a guest page if user is not signed in
+      end
+    end
+
     def sign_in(user)
       session[:user_id] = user.id
     end
@@ -25,6 +31,6 @@ module Authentication
       @current_user = nil
     end
 
-    helper_method :current_user, :user_signed_in?
+    helper_method :current_user
   end
 end
