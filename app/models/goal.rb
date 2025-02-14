@@ -1,4 +1,6 @@
 class Goal < ApplicationRecord
+  belongs_to :user
+
   validates :title, presence: true
 
   enum :status, %i( not_started in_process completed )

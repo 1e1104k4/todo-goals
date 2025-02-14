@@ -1,20 +1,21 @@
 class GoalsController < ApplicationController
   before_action :require_sign_in
-  before_action :set_goal, only: %i[ show edit update destroy ]
+  before_action :set_user
+  before_action :set_goal, only: %i[ edit update destroy ]
 
   # GET /goals or /goals.json
   def index
-    @goals = Goal.all
+    @goals = @user.goals
   end
 
-  # GET /goals/1 or /goals/1.json
-  def show
-  end
+  # # GET /goals/1 or /goals/1.json
+  # def show
+  # end
 
-  # GET /goals/new
-  def new
-    @goal = Goal.new
-  end
+  # # GET /goals/new
+  # def new
+  #   @goal = Goal.new
+  # end
 
   # GET /goals/1/edit
   def edit
@@ -22,7 +23,7 @@ class GoalsController < ApplicationController
 
   # POST /goals or /goals.json
   def create
-    @goal = Goal.new(goal_params)
+    @goal = @user.goals.new(goal_params)
 
     respond_to do |format|
       if @goal.save
@@ -59,9 +60,15 @@ class GoalsController < ApplicationController
   end
 
   private
+    def set_user
+      @user = User.find_by(id: session[:user_id]) if session[:user_id]
+      # todo if user is undefined - redirect to login
+      redirect_to login_path unless @user
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_goal
-      @goal = Goal.find(params.expect(:id))
+      @goal = @user.goals.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
