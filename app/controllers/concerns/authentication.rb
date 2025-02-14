@@ -18,7 +18,7 @@ module Authentication
 
     def require_sign_in
       unless user_signed_in?
-        render 'guest/guest'  # Redirects to a guest page if user is not signed in
+        render "guest/guest"  # Redirects to a guest page if user is not signed in
       end
     end
 

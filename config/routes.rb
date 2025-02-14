@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   controller :sessions do
-   get 'login' => :new
-   post 'login' => :create
-   delete 'logout' => :destroy
+   get "login" => :new
+   post "login" => :create
+   delete "logout" => :destroy
   end
   resources :users
-  resources :goals, except: [:new, :show]
+  resources :goals, except: [ :new, :show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

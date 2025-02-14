@@ -3,7 +3,7 @@ class Goal < ApplicationRecord
 
   validates :title, presence: true
 
-  enum :status, %i( not_started in_process completed )
+  enum :status, %i[ not_started in_process completed ]
 
   def next_status
     case status
