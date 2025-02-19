@@ -4,8 +4,10 @@ one:
   title: Build the app
   description: With Ruby on Rails
   status: 0
+  user: one
 
 two:
   title: Learn coding
   description:
   status: 1
+  user: two
