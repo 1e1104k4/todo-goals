@@ -1,16 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ edit update destroy ]
   before_action :require_no_authentication, only: %i[new create]
-  before_action :require_sign_in, only: %i[ index show edit update destroy ]
-
-  # GET /users or /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1 or /users/1.json
-  def show
-  end
+  before_action :require_sign_in, only: %i[ edit update destroy ]
 
   # GET /users/new
   def new
@@ -30,7 +21,7 @@ class UsersController < ApplicationController
         format.html { redirect_to login_url, notice: "User #{@user.name} was successfully created." }
         format.json { render json: { message: "User #{@user.name} was successfully created." }, status: :created }
       else
-        format.html { render :new, status: :unprocessable_entity }
+          format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -40,8 +31,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User #{@user.name} was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to root_path, notice: "User #{@user.name} was successfully updated." }
+        format.json { render json: { message: "User #{@user.name} was successfully updated." }, status: :ok}
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -54,7 +45,7 @@ class UsersController < ApplicationController
     @user.destroy!
 
     respond_to do |format|
-      format.html { redirect_to users_path, status: :see_other, notice: "User #{@user.name} was successfully destroyed." }
+      format.html { redirect_to root_path, status: :see_other, notice: "User #{@user.name} was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -63,6 +54,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params.expect(:id))
+
+      unless current_user == @user
+        redirect_to(root_path)
+      end
     end
 
     # Only allow a list of trusted parameters through.
