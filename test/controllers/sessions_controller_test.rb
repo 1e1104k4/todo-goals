@@ -34,6 +34,8 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should destroy session" do
     sign_in_as(@user)
     delete logout_url
+    assert_not session.key?(:user_id)
+    assert_nil @current_user
     assert_redirected_to root_path
     assert_equal "Logged out", flash[:notice]
   end
