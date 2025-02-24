@@ -18,7 +18,12 @@ module Authentication
 
     def require_sign_in
       unless user_signed_in?
-        render "guest/guest"  # Redirects to a guest page if user is not signed in
+        if request.path != root_path
+          redirect_to root_path, notice: "Please Sign In"
+        else
+          flash.now[:notice] = "Please Sign In"
+          render "guest/guest"
+        end
       end
     end
 

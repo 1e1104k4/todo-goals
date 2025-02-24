@@ -2,6 +2,7 @@ class GoalsController < ApplicationController
   before_action :require_sign_in
   before_action :set_user
   before_action :set_goal, only: %i[ edit update destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_goal
 
   # GET /goals or /goals.json
   def index
@@ -74,5 +75,10 @@ class GoalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def goal_params
       params.expect(goal: [ :title, :description, :status ])
+    end
+
+    def invalid_goal
+      logger.error "Attempt to access invalid goal #{params[:id]}"
+      redirect_to root_path, notice: "ERROR"
     end
 end

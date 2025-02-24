@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy ]
   before_action :require_no_authentication, only: %i[new create]
   before_action :require_sign_in, only: %i[ edit update destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
 
   # GET /users/new
   def new
@@ -63,5 +64,10 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.expect(user: [ :name, :password, :password_confirmation ])
+    end
+
+    def invalid_user
+      logger.error "Attempt to access invalid user #{params[:id]}"
+      redirect_to root_path, notice: "ERROR"
     end
 end
