@@ -32,6 +32,7 @@ class GoalsController < ApplicationController
         format.html { redirect_to root_path, notice: "Goal was successfully created." }
         format.json { render :show, status: :created, location: @goal }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@goal)}_form", partial: "form", locals: { goal: @goal }) }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
@@ -42,9 +43,11 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
+        format.turbo_stream
         format.html { redirect_to root_path, notice: "Goal was successfully updated." }
         format.json { render :show, status: :ok, location: @goal }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@goal)}_form", partial: "form", locals: { goal: @goal }) }
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
@@ -56,6 +59,7 @@ class GoalsController < ApplicationController
     @goal.destroy!
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@goal)}"), notice: "Goal was successfully destroyed." }
       format.html { redirect_to root_path, status: :see_other, notice: "Goal was successfully destroyed." }
       format.json { head :no_content }
     end
