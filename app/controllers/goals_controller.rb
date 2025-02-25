@@ -28,6 +28,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
+        format.turbo_stream
         format.html { redirect_to root_path, notice: "Goal was successfully created." }
         format.json { render :show, status: :created, location: @goal }
       else
