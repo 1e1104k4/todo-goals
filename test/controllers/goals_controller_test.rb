@@ -15,7 +15,7 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create goal" do
     sign_in_as(@user)
-    assert_difference('@user.goals.count', 1) do
+    assert_difference("@user.goals.count", 1) do
       post goals_path, params: { goal: { title: @goal.title } }
     end
     assert_redirected_to root_path
@@ -36,7 +36,7 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy goal" do
     sign_in_as(@user)
-    assert_difference('@user.goals.count', -1) do
+    assert_difference("@user.goals.count", -1) do
       delete goal_url(@goal)
     end
 

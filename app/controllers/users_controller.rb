@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to root_path, notice: "User #{@user.name} was successfully updated." }
-        format.json { render json: { message: "User #{@user.name} was successfully updated." }, status: :ok}
+        format.json { render json: { message: "User #{@user.name} was successfully updated." }, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }

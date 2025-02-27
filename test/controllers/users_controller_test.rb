@@ -77,7 +77,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   private
   # Helper method to simulate an authenticated user
   def sign_in_as(user)
-    post login_url, params: { name: user.name, password: 'secret' }
+    post login_url, params: { name: user.name, password: "secret" }
     follow_redirect!
   end
 end
