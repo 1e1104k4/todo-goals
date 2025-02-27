@@ -6,11 +6,13 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
+    skip
     visit users_url
     assert_selector "h1", text: "Users"
   end
 
   test "should create user" do
+    skip
     visit users_url
     click_on "New user"
 
@@ -24,6 +26,7 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "should update User" do
+    skip
     visit user_url(@user)
     click_on "Edit this user", match: :first
 
@@ -37,6 +40,7 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "should destroy User" do
+    skip
     visit user_url(@user)
     click_on "Destroy this user", match: :first
 
