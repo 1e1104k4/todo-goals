@@ -1,17 +1,19 @@
 <div id="<%= dom_id goal %>">
   <li class="py-2 px-4 border-b">
-    <div><%= goal.title %></div>
-    <div><%= goal.description %></div>
+    <%= turbo_frame_tag dom_id(goal) do %>
+        <div><%= link_to goal.title, edit_goal_path(goal) %></div>
+        <div><%= goal.description %></div>
 
-    <%= button_to goal.status.humanize, goal_path(goal),
-                  method: :patch,
-                  params: { goal: { status: goal.next_status } },
-                  class: status_button_class(goal.status) %>
+      <%= button_to goal.status.humanize, goal_path(goal),
+                    method: :patch,
+                    params: { goal: { status: goal.next_status } },
+                    class: status_button_class(goal.status),
+                    data: { turbo_stream: true } %>
 
-    <%= link_to "Edit this goal", edit_goal_path(goal), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this goal", goal, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium" %>
-    </div>
-
+      
+      <div class="inline-block ml-2">
+        <%= button_to "Destroy this goal", goal, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium" %>
+      </div>
+    <% end %>
   </li>
 </div>

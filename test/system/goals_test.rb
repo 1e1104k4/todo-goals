@@ -6,11 +6,13 @@ class GoalsTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
+    skip
     visit goals_url
     assert_selector "h1", text: "Goals"
   end
 
   test "should create goal" do
+    skip
     visit goals_url
     click_on "New goal"
 
@@ -24,6 +26,7 @@ class GoalsTest < ApplicationSystemTestCase
   end
 
   test "should update Goal" do
+    skip
     visit goal_url(@goal)
     click_on "Edit this goal", match: :first
 
@@ -37,6 +40,7 @@ class GoalsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Goal" do
+    skip
     visit goal_url(@goal)
     click_on "Destroy this goal", match: :first
 

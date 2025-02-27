@@ -63,3 +63,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "mutex_m", "~> 0.3.0"
+gem "simplecov", require: false, group: :test
