@@ -3,6 +3,7 @@
     <%= turbo_frame_tag dom_id(goal) do %>
         <div><%= link_to goal.title, edit_goal_path(goal) %></div>
         <div><%= goal.description %></div>
+        
 
       <%= button_to goal.status.humanize, goal_path(goal),
                     method: :patch,

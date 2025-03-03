@@ -66,3 +66,10 @@ end
 
 gem "mutex_m", "~> 0.3.0"
 gem "simplecov", require: false, group: :test
+
+
+gem "ruby_ui", git: "https://github.com/ruby-ui/ruby_ui.git", ref: "cf00f6648f30031f67792440fe48c031afb581d9", group: :development, require: false
+
+gem "phlex-rails", "~> 2.0", :github => "phlex-ruby/phlex-rails"
+
+gem "tailwind_merge", "~> 1.0"
