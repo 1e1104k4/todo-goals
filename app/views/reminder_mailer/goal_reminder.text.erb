@@ -1,0 +1,16 @@
+Reminder#goal_reminder
+
+Hello <%= @user.name %>,
+
+This is a friendly reminder about your goals:
+
+<% @goals.each do |goal| %>
+Title: <%= goal.title %>
+<%# Due Date: <%= goal.due_date.strftime("%B %d, %Y") %>
+Current Status: <%= goal.status %>
+
+<% end %>
+Don't forget to update your progress!
+
+Best regards,
+Your Todo App

@@ -8,3 +8,12 @@
 #     command: "SoftDeletedRecord.due.delete_all"
 #     priority: 2
 #     schedule: at 5am every day
+
+development:
+  a_periodic_job:
+    class: SendReminderJob
+    args: [ user_id ]
+    schedule: every second
+  a_cleanup_task:
+    command: "DeletedStuff.clear_all"
+    schedule: every day at 9am

@@ -1,0 +1,15 @@
+<h1>Hello <%= @user.name %>,</h1>
+
+<p>This is a friendly reminder about your goals:</p>
+
+<% @goals.each do |goal| %>
+  <div style="margin: 20px; padding: 10px; border: 1px solid #ccc;">
+    <h2><%= goal.title %></h2>
+    <%# <p><strong>Due Date:</strong> <%= goal.due_date.strftime("%B %d, %Y") %> %>
+    <p><strong>Current Status:</strong> <%= goal.status %></p>
+  </div>
+<% end %>
+
+<p>Don't forget to update your progress!</p>
+
+<p>Best regards,<br>Your Todo App</p>
